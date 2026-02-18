@@ -1333,3 +1333,68 @@ body.game-finished .player-card:not(.current-turn){ transform:scale(.98); opacit
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
+
+
+/* Tablet (incl. iPad 10th gen landscape ~1180px): tighter layout + centered header */
+@media (max-width: 1280px) {
+  /* center overall content */
+  body .container, body .app, body .app-container, body main{
+    max-width: 1040px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* header title smaller + centered */
+  .brand, .app-title, .logo-title, header h1, .header-left{
+    text-align: center !important;
+  }
+  /* try common title node */
+  .header .title, .topbar .title, .app-header .title, .header-title, .site-title{
+    font-size: 13px !important;
+    font-weight: 600 !important;
+  }
+  /* fallback: any H1 inside header */
+  .header h1, .topbar h1, .app-header h1{
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    margin: 0 auto !important;
+  }
+
+  /* scoreboard smaller */
+  #scoreboard, .scoreboard{
+    max-width: 620px !important;
+    padding: 10px 12px !important;
+    border-radius: 16px !important;
+  }
+  .scoreboard-item{
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+  }
+  .scoreboard-meta{ min-width: 72px !important; }
+
+  /* tighter spacing everywhere */
+  .players-area{ gap: 12px !important; }
+  .player-card{ padding: 10px !important; border-radius: 12px !important; }
+  .timeline-wrap{ gap: 6px !important; }
+  .subgame-row{ padding: 9px 10px !important; border-radius: 11px !important; }
+  .sg-text{ font-size: 12px !important; }
+  .player-name{ font-size: 13px !important; }
+  .score-chip{ min-width: 34px !important; padding: 4px 8px !important; font-size: 12px !important; }
+}
+
+/* iPad portrait: 2 columns + even tighter */
+@media (max-width: 900px) {
+  .players-area{ gap: 10px !important; }
+  .player-card{ padding: 9px !important; }
+  .subgame-row{ padding: 8px 9px !important; }
+}
+
+
+/* Ultra-fit: scale the whole app slightly on tablets so ALL 4 columns fit */
+@media (min-width: 1024px) and (max-width: 1366px) {
+  .container, .app, .app-container, main{
+    transform: scale(0.90);
+    transform-origin: top center;
+    width: 111%;
+  }
+}
