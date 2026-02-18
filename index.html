@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rentz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="app-title">Rentz by Domnul Dan</span>
+      </div>
+      <div class="topbar-right">
+        <button id="aspectButton" class="btn btn-ghost">Aspect</button>
+        <button id="topNewGameButton" class="btn btn-ghost">Joc nou</button>
+      </div>
+    </header>
+
+    <main class="main-layout">
+      <!-- ECRAN START -->
+      <section id="start-screen" class="panel start-panel">
+        <div class="start-card">
+          <h1 class="start-title">Configurează jocul</h1>
+          <p class="start-subtitle">
+            Introdu numele celor 4 jucători și apasă <strong>Start Joc</strong>. Poți păstra și numele implicite.
+          </p>
+          <form id="startForm" class="players-form">
+            <div class="player-input-row">
+              <label for="player1">Jucător 1</label>
+              <input id="player1" type="text" placeholder="Jucător 1" />
+            </div>
+            <div class="player-input-row">
+              <label for="player2">Jucător 2</label>
+              <input id="player2" type="text" placeholder="Jucător 2" />
+            </div>
+            <div class="player-input-row">
+              <label for="player3">Jucător 3</label>
+              <input id="player3" type="text" placeholder="Jucător 3" />
+            </div>
+            <div class="player-input-row">
+              <label for="player4">Jucător 4</label>
+              <input id="player4" type="text" placeholder="Jucător 4" />
+            </div>
+            <div class="start-actions">
+              <button type="submit" class="btn btn-primary">Start Joc</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ECRAN JOC -->
+      <section id="game-screen" class="panel game-panel hidden">
+        <div class="game-grid">
+          <!-- Clasament -->
+          <aside id="scoreboard" class="scoreboard">
+            <div class="scoreboard-header">
+              <h2>Clasament</h2>
+            </div>
+            <ul id="scoreboardList" class="scoreboard-list">
+              <!-- Populat din JS -->
+            </ul>
+
+            <div id="gameTimerContainer" class="game-timer hidden">
+              <span class="game-timer-label">Timp joc:</span>
+              <span id="gameTimerValue" class="game-timer-value">00:00</span>
+              <button id="gameTimerToggle" type="button" class="btn btn-ghost btn-xs">Pauză</button>
+            </div>
+          </aside>
+
+          <!-- Jucători + subjocuri -->
+          <section id="playersArea" class="players-area">
+            <!-- Populat din JS -->
+          </section>
+
+          <div class="report-buttons-bar">
+            <button id="openReportChoices" class="btn btn-ghost">Raport pe alegeri</button>
+            <button id="openReportSubgames" class="btn btn-ghost">Raport pe sub-jocuri</button>
+          </div>
+        
+          
+          
+
+</div>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODAL SUBJOCURI -->
+  <div id="modalOverlay" class="modal-overlay hidden" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="modalTitle" class="modal-title"></h2>
+        <p id="modalHint" class="modal-hint"></p>
+      </div>
+      <div id="modalContent" class="modal-content">
+        <!-- Din JS -->
+      </div>
+      <div class="modal-footer">
+        <button id="modalCancel" class="btn btn-ghost">Anulează</button>
+        <button id="modalConfirm" class="btn btn-primary">Gata runda</button>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- RAPOARTE LIVE -->
+  <div id="reportOverlay" class="modal-overlay hidden" aria-hidden="true">
+    <div class="modal-card modal-card-wide">
+      <div class="modal-header">
+        <h2 id="reportTitle" class="modal-title">Raport</h2>
+      </div>
+      <div id="reportContent" class="modal-content modal-content-scroll">
+        <!-- Dinamic -->
+      </div>
+      <div class="modal-footer">
+        <button id="closeReportButton" class="btn btn-primary btn-full">Închide raportul</button>
+      </div>
+    </div>
+  </div>
+
+<!-- ECRAN FINAL -->
+  <div id="endGameOverlay" class="modal-overlay hidden" aria-hidden="true">
+    <div class="modal-card modal-card-wide">
+      <div class="modal-header">
+        <h2 class="modal-title">Jocul s-a încheiat</h2>
+      </div>
+      <div id="endGameContent" class="modal-content modal-content-scroll">
+        <!-- Clasament final + raport pe alegeri -->
+      </div>
+      <div class="modal-footer">
+        <button id="newGameButton" class="btn btn-primary btn-full">Joc nou</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js?v=4"></script>
+</body>
+</html>
