@@ -1287,3 +1287,49 @@ body.game-finished .player-card:not(.current-turn){ transform:scale(.98); opacit
 .score-chip{
   color:#111827 !important;
 }
+
+
+/* iPad 10th gen / tablets: compact density so everything fits */
+@media (max-width: 1024px) {
+  body{ font-size: 13px; }
+  .container, .app, .app-container, main{
+    max-width: 980px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  #scoreboard, .scoreboard{
+    padding: 12px;
+    border-radius: 16px;
+  }
+  .players-area{ gap: 16px !important; }
+  .player-card{
+    padding: 12px !important;
+    border-radius: 14px;
+  }
+  .player-name{ font-size: 13px; }
+  .score-chip{
+    min-width: 38px;
+    padding: 5px 9px;
+    font-size: 12px;
+  }
+  .subgame-row{
+    border-radius: 12px;
+    padding: 10px 12px;
+  }
+  .sg-text{ font-size: 12px; }
+  .rank-badge{
+    font-size: 11px;
+    padding: 2px 8px;
+  }
+  .header, .topbar, .app-header{
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+/* iPad portrait: fall back to 2 columns for readability */
+@media (max-width: 900px) {
+  .players-area{
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
