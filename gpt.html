@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>GPT Lite</title>
+  <style>
+    :root{color-scheme:dark;--bg:#000;--text:#f7f1dd;--muted:#b9ad8a;--gold:#d8b45c;--gold2:#f2d27b;--panel:rgba(20,20,20,.92);--focus:#fff2b8}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#000;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;overflow:hidden}.app{width:100vw;height:100vh;max-width:600px;max-height:600px;margin:0 auto;padding:26px;background:radial-gradient(circle at top,rgba(216,180,92,.2),transparent 34%),linear-gradient(180deg,#070707,#000);display:flex}.screen{display:none;width:100%;height:100%;flex-direction:column;gap:16px}.screen.active{display:flex}.top{display:flex;gap:10px;align-items:center;color:var(--gold2);font-size:17px;letter-spacing:.16em;font-weight:900}.dot{width:12px;height:12px;border-radius:99px;background:var(--gold);box-shadow:0 0 18px var(--gold)}h1{font-size:46px;line-height:.95;margin:8px 0 0;letter-spacing:-.04em}h2{font-size:32px;margin:4px 0}.sub{font-size:21px;line-height:1.25;color:var(--muted);margin:0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.row{display:flex;gap:12px;flex-wrap:wrap}.list{display:flex;flex-direction:column;gap:12px}button,textarea,input{font:inherit;border:1px solid rgba(216,180,92,.3);border-radius:22px;background:var(--panel);color:var(--text);outline:none}button{min-height:74px;padding:15px 17px;font-size:23px;font-weight:900;text-align:center}button.primary{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#151006;border-color:transparent}.hint{margin-top:auto;color:rgba(247,241,221,.62);font-size:15px}.label{font-size:15px;color:var(--gold2);font-weight:900;text-transform:uppercase;letter-spacing:.12em}.input{width:100%;background:rgba(34,34,34,.95);padding:18px;font-size:24px;line-height:1.18;resize:none}.single{min-height:70px}.answer{flex:1;overflow:auto;background:var(--panel);border:1px solid rgba(216,180,92,.25);border-radius:26px;padding:22px;font-size:27px;line-height:1.18;white-space:pre-wrap}.focused,.focusable:focus{box-shadow:0 0 0 4px rgba(255,242,184,.32),0 0 22px rgba(216,180,92,.6);border-color:var(--focus);transform:translateY(-1px)}@media(max-width:420px),(max-height:420px){.app{padding:18px}h1{font-size:36px}.sub{font-size:18px}button{min-height:62px;font-size:19px}.answer{font-size:22px}.input{font-size:20px}}
+  </style>
+</head>
+<body>
+<main class="app">
+  <section class="screen active" data-screen="home">
+    <div class="top"><span class="dot"></span><span>GPT LITE</span></div>
+    <h1>Salut, domnule Dan.</h1>
+    <p class="sub">Webapp simplu pentru Ray‑Ban Meta Display. Text mare, fundal negru, control cu D‑pad.</p>
+    <div class="grid">
+      <button class="focusable primary" data-action="type">Scrie</button>
+      <button class="focusable" data-action="voice">Vorbește</button>
+      <button class="focusable" data-action="quick">Prompt rapid</button>
+      <button class="focusable" data-action="settings">Setări</button>
+    </div>
+    <p class="hint">D‑pad: navigare · Enter: selectează · Esc: acasă</p>
+  </section>
+  <section class="screen" data-screen="ask">
+    <div class="top"><span class="dot"></span><span>ASK</span></div>
+    <label class="label" for="prompt">Întrebare</label>
+    <textarea id="prompt" class="focusable input" rows="5" placeholder="Scrie întrebarea aici"></textarea>
+    <div class="row"><button class="focusable primary" data-action="send">Trimite</button><button class="focusable" data-action="openchatgpt">ChatGPT</button><button class="focusable" data-action="home">Acasă</button></div>
+  </section>
+  <section class="screen" data-screen="quick">
+    <div class="top"><span class="dot"></span><span>QUICK</span></div>
+    <h2>Alege un prompt</h2>
+    <div class="list">
+      <button class="focusable quick" data-prompt="Răspunde foarte scurt, în română, cu pași clari.">Răspuns scurt</button>
+      <button class="focusable quick" data-prompt="Transformă ce spun într-o listă de pași practici.">Pași practici</button>
+      <button class="focusable quick" data-prompt="Dă-mi o idee rapidă și premium pentru casa mea.">Idee casă</button>
+      <button class="focusable quick" data-prompt="Ajută-mă cu o setare pentru Creality Falcon A1 10W.">Laser helper</button>
+    </div>
+    <button class="focusable" data-action="home">Acasă</button>
+  </section>
+  <section class="screen" data-screen="answer">
+    <div class="top"><span class="dot"></span><span>ANSWER</span></div>
+    <div id="answerBox" class="answer">Aici apare răspunsul.</div>
+    <div class="row"><button class="focusable primary" data-action="type">Întreabă iar</button><button class="focusable" data-action="openchatgpt">ChatGPT</button><button class="focusable" data-action="home">Acasă</button></div>
+  </section>
+  <section class="screen" data-screen="settings">
+    <div class="top"><span class="dot"></span><span>SETĂRI</span></div>
+    <p class="sub">Pentru răspunsuri direct în webapp trebuie backend securizat. Nu pune cheia OpenAI în browser.</p>
+    <label class="label" for="endpoint">Backend endpoint</label>
+    <input id="endpoint" class="focusable input single" placeholder="https://.../api/chat">
+    <div class="row"><button class="focusable primary" data-action="save">Salvează</button><button class="focusable" data-action="clear">Șterge</button><button class="focusable" data-action="home">Acasă</button></div>
+  </section>
+</main>
+<script>
+const screens=[...document.querySelectorAll('.screen')],answerBox=document.getElementById('answerBox'),promptBox=document.getElementById('prompt'),endpointInput=document.getElementById('endpoint');let focusIndex=0,lastPrompt='';const STORAGE='domnuldan.gptlite.endpoint';endpointInput.value=localStorage.getItem(STORAGE)||'';function show(id){screens.forEach(s=>s.classList.toggle('active',s.dataset.screen===id));focusIndex=0;setTimeout(focusCurrent,50)}function items(){const a=document.querySelector('.screen.active');return[...a.querySelectorAll('.focusable')].filter(e=>!e.disabled)}function focusCurrent(){const it=items();document.querySelectorAll('.focused').forEach(e=>e.classList.remove('focused'));if(!it.length)return;focusIndex=Math.max(0,Math.min(focusIndex,it.length-1));it[focusIndex].classList.add('focused');try{it[focusIndex].focus({preventScroll:true})}catch(e){}}function move(d){const it=items();if(!it.length)return;focusIndex=(focusIndex+d+it.length)%it.length;focusCurrent()}function ans(t){answerBox.textContent=t;show('answer')}async function ask(text){const endpoint=localStorage.getItem(STORAGE);if(!endpoint){ans('Nu este configurat backend-ul securizat.\n\nApasă ChatGPT pentru a trimite întrebarea în ChatGPT.\n\nPentru răspuns direct aici, trebuie un backend separat.');return}ans('Gândesc...');try{const r=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,system:'Răspunde în română, foarte scurt, cu pași clari. Utilizatorul este domnul Dan.'})});if(!r.ok)throw new Error('HTTP '+r.status);const d=await r.json();ans(d.reply||d.message||d.text||JSON.stringify(d,null,2))}catch(e){ans('Nu am putut contacta backend-ul.\n\nDetaliu: '+e.message)}}function openGPT(){const q=encodeURIComponent(lastPrompt||promptBox.value||'Salut. Răspunde-mi scurt în română.');location.href='https://chatgpt.com/?q='+q}function voice(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){promptBox.value='Browserul acesta nu oferă dictare web. Scrie întrebarea aici.';show('ask');return}const r=new SR();r.lang='ro-RO';r.interimResults=false;r.maxAlternatives=1;ans('Ascult... vorbește acum.');r.onresult=e=>{const t=e.results[0][0].transcript;lastPrompt=t;promptBox.value=t;ask(t)};r.onerror=e=>ans('Dictarea nu a pornit. Poți scrie manual.\n\nDetaliu: '+e.error);r.start()}function action(a){if(a==='type')return show('ask');if(a==='voice')return voice();if(a==='quick')return show('quick');if(a==='settings')return show('settings');if(a==='home')return show('home');if(a==='openchatgpt')return openGPT();if(a==='send'){const t=promptBox.value.trim();if(!t)return ans('Scrie întâi întrebarea.');lastPrompt=t;return ask(t)}if(a==='save'){const v=endpointInput.value.trim();if(v&&!v.startsWith('https://'))return ans('Endpoint-ul trebuie să înceapă cu https://');localStorage.setItem(STORAGE,v);return ans(v?'Backend salvat.':'Salvat fără endpoint.')}if(a==='clear'){localStorage.removeItem(STORAGE);endpointInput.value='';return ans('Endpoint șters.')}}document.addEventListener('click',e=>{const b=e.target.closest('[data-action],.quick');if(!b)return;if(b.classList.contains('quick')){promptBox.value=b.dataset.prompt;show('ask');return}action(b.dataset.action)});document.addEventListener('keydown',e=>{const typing=['TEXTAREA','INPUT'].includes(document.activeElement.tagName);if(e.key==='Escape'){e.preventDefault();show('home');return}if(typing&&!['ArrowUp','ArrowDown'].includes(e.key))return;if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();move(1)}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();move(-1)}if(e.key==='Enter'){const it=items(),el=it[focusIndex];if(el&&el.tagName==='BUTTON'){e.preventDefault();el.click()}}});window.addEventListener('load',()=>show('home'));
+</script>
+</body>
+</html>
